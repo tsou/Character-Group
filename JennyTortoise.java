@@ -1,6 +1,6 @@
-public class JennyTortoise extends Monster{
+public class Piplup extends Monster{
 
-	JennyTortoise(int x,int y)
+	Piplup(int x,int y)
 	{
 		this.x=x;
 		this.y=y;
