@@ -5,16 +5,16 @@ public class Character {
 		private int blood;
 		private int defence;
 		private int speed;
-		private char type;
+		private byte type;//0=water 1=fire 2=grass
 		private int skillCD;
 		private int x;
 		private int y;
 		private boolean SkillUse = false; //Can use skill or not
 		private char[] bag = {'n','n'}; //n=empty
 		private int BagCapacity = 0; //How many things in the bag
-		//status arraylist(???????
+		private int[] status = new int[6];//看有幾種狀態 存01確認是否有狀態即可
 	
-		Character(int PlayerID ,int PlayerBlood ,int PlayerDefence ,int PlayerSpeed ,char PlayerType ,int PlayerSkillCD)
+		Character(int PlayerID ,int PlayerBlood ,int PlayerDefence ,int PlayerSpeed ,byte PlayerType ,int PlayerSkillCD)
 		{
 			ID = PlayerID;
 			blood = PlayerBlood;
@@ -52,6 +52,15 @@ public class Character {
 		public int GetSpeed(){ //do not need?
 			return speed;
 		}
+		public void SetStatusOn(int number){
+			status[number]=1;
+		}
+		public void SetStatusOff(int number){
+			status[number]=0;
+		}
+		public int GetStatus(int number){ 
+			return status[number];
+		}
 		public void SetX(int XNew){
 			x = XNew;
 		}
@@ -70,30 +79,25 @@ public class Character {
 		public boolean GetSkillUse(){ 
 			return SkillUse;
 		}
-		public int SetBag(char BagNew){
-			if(BagCapacity==1)
-			{
-				bag[BagCapacity]=BagNew;
-				BagCapacity++;
-				return 2;//there is 2 things in the bag
-			}
-			else if(BagCapacity==0)
-			{
-				bag[BagCapacity]=BagNew;
-				BagCapacity++;
-				return 1;//there is 1 things in the bag
-			}
-			return 0;//the bag is full
-		}
-		public void DeleteBag(){
-			if(BagCapacity>0)//the bag is not empty
-			{
-				bag[BagCapacity-1]='n';
-				BagCapacity--;
-			}
-		}
-		//*******************************
-		public char[] GetBag(){ //return matrix will have risk
-			return bag;
-		}		
+		public char GetBag(int number)
+		 {
+			return bag[number];
+		 }
+		 public void SetBag(char thing)
+		 {
+			 if(bag[0]==' ')
+			 {
+				 bag[0]=thing;
+			 }
+			 else if(bag[1]==' ')
+			 {
+				 bag[1]=thing;
+			 }
+			 //else
+			 //the bag is full
+		 }
+		 public void DeleteBag(int number)
+		 {
+			 bag[number]=' ';
+		 }		
 	}
