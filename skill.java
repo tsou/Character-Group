@@ -1,32 +1,62 @@
+package animation;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+
+
+
 
 public class skill {
-	public void skill(charactar,monster)     
+	
+	
+	public void skill1(Character c1)     
 	{
+		Timer timer = new Timer();
+		
 		int saverun=0;
-		switch(charactar.GetID) { 
+		switch(c1.GetID()) { 
 		  	case 1: 
-		  		saverun=monster.GetSpeed()
-		  		monster.SetSpeed(1); 
-		  		Thread.sleep(7000);
-		  		monster.SetSpeed(saverun);
+		  		saverun=c1.GetSpeed();
+		  		c1.SetSpeed(1); 
+		  		timer.schedule(new TimerTask() {  
+		            @Override  
+		            public void run() {  
+		               c1.SetSpeed(saverun);
+		            }  
+		        }, 7000);   
+		  		
+		  		
 		      		break;
 		      		
 		  	case 2: 
-		  		charactar.SetBlood(charactar.GetBlood()+10); 
+		  		c1.SetBlood(c1.GetBlood()+10); 
 		      		break; 
 		      	
 		  	case 3: 
 		      	saverun=monster.GetSpeed();
 		      	monster.SetSpeed(0);
+		      	timer.schedule(new TimerTask() {  
+		            @Override  
+		            public void run() {  
+		            	monster.SetSpeed(saverun);
+		            }  
+		        }, 2000); 
 		      	Thread.sleep(2000);
-		  		monster.SetSpeed(saverun);
+		  		
 		  		break;
 		  		
 		  	case 4:
-		  		saverun=charactar.GetSpeed();
-		  		charactar.SetSpeed(charactar.GetSpeed()+2);
-		  		Thread.sleep(2000);
-		  		charactar.SetSpeed(saverun);
+		  		saverun=c1.GetSpeed();
+		  		c1.SetSpeed(c1.GetSpeed()+2);
+		  		timer.schedule(new TimerTask() {  
+		            @Override  
+		            public void run() {  
+		               c1.SetSpeed(saverun);
+		            }  
+		        }, 2000);  
+		  		
+		  		
 		  		break;
 		  		
 		  	case 5:
@@ -38,8 +68,25 @@ public class skill {
 		  		
 		  		saverun=monster.GetSpeed();
 		  		monster.SetSpeed(0);
-		  		Thread.sleep(5000);
-		  		monster.SetSpeed(saverun);
+		  		timer.schedule(new TimerTask() {  
+		            @Override  
+		            public void run() {  
+		            	monster.SetSpeed(saverun);
+		            }  
+		        }, 5000); 
+		  		
+		  		
 		  		break;
 	  }
+	
+	
+	}
 }
+
+	
+
+	
+	
+
+	
+
